@@ -111,4 +111,6 @@ namespace markdown
     }
 }
 
+#define CODE_INITIALIZER(x) markdown::code(x, #x)
+
 #endif
