@@ -25,4 +25,5 @@ link_directories(${Boost_LIBRARY_DIRS})
 add_executable(basic-example example01.cpp markdown.hpp markdown.cpp)
 add_executable(opencv-example opencv-example.cpp markdown.hpp markdown.cpp markdown-opencv.hpp)
 
+target_link_libraries(basic-example ${OpenCV_LIBS})
 target_link_libraries(opencv-example ${OpenCV_LIBS})
