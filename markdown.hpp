@@ -86,46 +86,14 @@ namespace markdown
         std::string        suffix;
         std::ostringstream str;
     };
-
-    class document
+    
+    inline std::ostream& operator<<(std::ostream& str, const string_printer& x)
     {
-    public:
-        document(std::ostream& dst)
-            : m_dst(dst)
-        {            
-        }
-        
-        // this is the type of std::cout
-        typedef std::basic_ostream<char, std::char_traits<char> > CoutType;
-        
-        // this is the function signature of std::endl
-        typedef CoutType& (*StandardEndLine)(CoutType&);
-        
-        // define an operator< < to take in std::endl
-        document& operator<<(StandardEndLine  manip)
-        {
-            manip(m_dst);            
-            return *this;
-        }
+        return str << x.string();
+    }
 
-        template <typename T>
-        document& operator<<(const T& x)
-        {
-            m_dst << x;
-            return *this;
-        }
-
-        document& operator<<(const string_printer& x)
-        {
-            m_dst << x.string();
-            return *this;
-        }
-        
-    private:
-        std::ostream& m_dst;
-    };
-
-
+    // Tags:
+    
     template <typename T>
     inline string_printer h1(const T& x) { return string_printer("#", "\n", x); }
 
